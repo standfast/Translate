@@ -1,0 +1,8 @@
+[
+	{ 
+		"keys": ["f1"], 
+		"command": "translate",
+		"args": {
+		} 
+	}
+]
