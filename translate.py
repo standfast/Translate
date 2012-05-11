@@ -14,6 +14,7 @@ dicpath = os.path.join(pkgpath, setting.get('dictdir'))
 dic     = stardict.Dict(dicpath)
 maxline = setting.get('maxline', 5)
 maxline = maxline if maxline > 0 else 5
+history = setting.get('history', False)
 
 
 class LocalfileTranslateCommand(sublime_plugin.TextCommand):
@@ -48,5 +49,6 @@ class NetworkTranslateCommand(LocalfileTranslateCommand):
 class HistoryTranslateListener(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
         region = view.word(view.sel()[0])
-        symbol = view.substr(region).lower()        
-        view.set_status('-', u'[ 中 ]')
+        symbol = view.substr(region).lower()
+        if history:      
+            view.set_status('-', u'[ 中 ]')
