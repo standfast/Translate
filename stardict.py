@@ -1,7 +1,10 @@
+# coding: utf8
+# laputa
+
+import gzip
 import os
 import struct
 import sys
-import gzip
 
 
 class Dict(object):
@@ -19,7 +22,7 @@ class Dict(object):
             self._load(self.dictdir)
             self.isload = True
         item = self._get_index(word)
-        text = self._query(item[1], item[2]) if item else ''
+        text = self._query(item[1], item[2]) if item else 'not found'
         return text        
 
     def _load(self, dictdir):
@@ -35,8 +38,9 @@ class Dict(object):
                     self.count = int(count)
 
     def _parse_idx(self):
-        with open(self.idx, 'rb') as fi: 
-            data = fi.read()
+        gf = gzip.open(self.idx, 'rb')
+        data = gf.read()
+        gf.close()
 
         begin = 0
 
@@ -66,7 +70,7 @@ class Dict(object):
                 return self.words[mid]
 
     def _query(self, offset, size):
-        fi =  gzip.open(self.dic, 'rb')
+        fi = gzip.open(self.dic, 'rb')
         fi.seek(offset, 0)
         text = fi.read(size)
         fi.close()
@@ -84,7 +88,7 @@ def parse_dir(dictdir):
     for f in os.listdir(dictdir):
         if f.endswith('.ifo'):
             ifo = os.path.join(dictdir, f)
-        elif f.endswith('.idx'):
+        elif f.endswith('.idx.dz'):
             idx = os.path.join(dictdir, f)
         elif f.endswith('.dict.dz'):
             dic = os.path.join(dictdir, f)

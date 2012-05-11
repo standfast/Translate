@@ -1,3 +1,6 @@
+# coding: utf8
+# laputa
+
 import struct
 from stardict import Dict
 

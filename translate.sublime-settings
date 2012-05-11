@@ -1,3 +1,5 @@
 {
-	"author": "laputa"
+	"dictdir": "translate/dicts/langdao",
+	"maxline": 4,
+	"history": false
 }

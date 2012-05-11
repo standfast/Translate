@@ -1,8 +1,4 @@
 [
-	{ 
-		"keys": ["f1"], 
-		"command": "translate",
-		"args": {
-		} 
-	}
+	{ "keys": ["ctrl+1"], "command": "localfile_translate" },
+	{ "keys": ["ctrl+2"], "command": "network_translate" }
 ]
