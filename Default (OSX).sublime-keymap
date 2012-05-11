@@ -1,4 +1,4 @@
 [
-	{ "keys": ["ctrl+1"], "command": "localfile_translate" },
-	{ "keys": ["ctrl+2"], "command": "network_translate" }
+	{ "keys": ["super+1"], "command": "localfile_translate" },
+	{ "keys": ["super+2"], "command": "network_translate" }
 ]
