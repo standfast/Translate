@@ -1,4 +1,6 @@
 translate
 =========
 
-a translation plugin for sublime text 2
+a translation plugin for sublime text 2.
+
+by laputa
