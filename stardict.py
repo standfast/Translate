@@ -30,6 +30,10 @@ class Dict(object):
         self._parse_ifo()
         self._parse_idx()
 
+    def release(self):
+        self.isload = False
+        self.words = []
+
     def _parse_ifo(self):
         with open(self.ifo) as fi:
             for line in fi:

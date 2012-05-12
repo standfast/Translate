@@ -24,20 +24,21 @@ class LocalfileTranslateCommand(sublime_plugin.TextCommand):
 
     def on_done(self, arg):
         if arg != -1:
-            if arg == maxline:
+            if arg == self.count:
                 self.show(self.tetc)
-            elif arg == maxline + 1:
+            elif arg == self.count + 1:
                 pass
         else:
             pass
 
     def run(self, edit):
-        maxline = setting.get('maxline', 4)
-        maxline = maxline if maxline > 0 else 4
         region = self.view.word(self.view.sel()[0])
         self.symbol = self.view.substr(region).lower()
         self.tetc = self.query(self.symbol)
-        self.show(self.tetc, maxline)
+        self.count = setting.get('maxline', 4)
+        self.show(self.tetc, self.count)
+        if not setting.get('store_dict_in_memory', False):
+            dic.release()
 
     def query(self, word):
         text = dic.query(word)

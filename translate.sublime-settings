@@ -1,5 +1,6 @@
 {
 	"dictdir": "translate/dicts/langdao",
 	"maxline": 4,
+	"store_dict_in_memory": false,
 	"history": false
 }
