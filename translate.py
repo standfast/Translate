@@ -37,11 +37,11 @@ class LocalfileTranslateCommand(sublime_plugin.TextCommand):
         self.tetc = self.query(self.symbol)
         self.count = setting.get('maxline', 4)
         self.show(self.tetc, self.count)
-        if not setting.get('store_dict_in_memory', False):
-            dic.release()
 
     def query(self, word):
         text = dic.query(word)
+        if not setting.get('store_dict_in_memory', False):
+            dic.release()        
         res = parse.parse_langdao(text)
         return res
 
