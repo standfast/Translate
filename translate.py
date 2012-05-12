@@ -33,8 +33,19 @@ class LocalfileTranslateCommand(sublime_plugin.TextCommand):
             pass
 
     def run(self, edit):
-        region = self.view.word(self.view.sel()[0])
-        self.symbol = self.view.substr(region).lower()
+        region = self.view.sel()[0]
+        point  = region.begin()
+        region = self.view.word(point)
+        symbol = self.view.substr(region)
+
+        point  = point - region.begin()
+        end = region.end() - region.begin() + 1
+        pos = symbol[:point].rfind('_')
+        begin = 0 if pos == -1 else pos + 1
+        pos = symbol[point:].find('_')
+        end = end if pos == -1 else pos
+
+        self.symbol = symbol[begin:end].lower()
         self.tetc = self.query(self.symbol)
         self.count = setting.get('maxline', 4)
         self.show(self.tetc, self.count)
