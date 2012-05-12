@@ -65,14 +65,14 @@ class Dict(object):
 
         while begin <= end:
             mid = (begin + end) >> 1
-            r = cmp(word, self.words[mid])
+            wstr, offset, size = self.words[mid].split('#')
+            r = cmp(word, wstr)
             if r > 0:
                 begin = mid + 1
             elif r < 0:
-                if self.words[mid].startswith(word+'#'):
-                    offset, size = self.words[mid].split('#')[1:]
-                    return int(offset), int(size)
                 end = mid - 1
+            else:
+                return int(offset), int(size)
 
     def _query(self, offset, size):
         fi = gzip.open(self.dic, 'rb')
