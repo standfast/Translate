@@ -6,7 +6,7 @@
 	"maxline": 4,
 
 	// set it true, query would be faster, but consume more memory
-	"store_dict_in_memory": false,
+	"store_index_in_memory": false,
 
 	// history record
 	"history": false
