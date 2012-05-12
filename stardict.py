@@ -57,22 +57,22 @@ class Dict(object):
             offset, size = struct.unpack_from('>ii', data, begin)
             begin += struct.calcsize('>ii')
 
-            self.words.append(word)
-            self.words.append(offset)
-            self.words.append(size)
+            item = (word.lower(), str(offset), str(size))
+            self.words.append('#'.join(item))
 
     def _get_index(self, word):
         begin, end = 0, self.count - 1
 
         while begin <= end:
             mid = (begin + end) >> 1
-            r = cmp(word, self.words[mid*3].lower())
+            r = cmp(word, self.words[mid])
             if r > 0:
                 begin = mid + 1
             elif r < 0:
+                if self.words[mid].startswith(word+'#'):
+                    offset, size = self.words[mid].split('#')[1:]
+                    return int(offset), int(size)
                 end = mid - 1
-            else:
-                return self.words[mid*3+1:(mid+1)*3]
 
     def _query(self, offset, size):
         fi = gzip.open(self.dic, 'rb')
