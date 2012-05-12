@@ -41,7 +41,7 @@ class LocalfileTranslateCommand(sublime_plugin.TextCommand):
 
     def query(self, word):
         text = dic.query(word)
-        if not setting.get('store_dict_in_memory', False):
+        if not setting.get('store_index_in_memory', False):
             dic.release()        
         res = parse.parse_langdao(text)
         return res
