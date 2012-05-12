@@ -10,7 +10,8 @@ import parse
 
 setting = sublime.load_settings('translate.sublime-settings')
 pkgpath = sublime.packages_path()
-dicpath = os.path.join(pkgpath, setting.get('dictdir'))
+dicpath = setting.get('dictdir')
+dicpath = os.path.join(pkgpath, dicpath)
 dic     = stardict.Dict(dicpath)
 history = setting.get('history', False)
 

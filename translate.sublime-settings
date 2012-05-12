@@ -1,6 +1,13 @@
 {
+	// relative to sublime packages path
 	"dictdir": "translate/dicts/langdao",
+
+	// the most lines shown in panel
 	"maxline": 4,
+
+	// set it true, query would be fast, and consume more memory
 	"store_dict_in_memory": false,
+
+	// history record
 	"history": false
 }
