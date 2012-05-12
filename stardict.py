@@ -22,7 +22,7 @@ class Dict(object):
             self._load(self.dictdir)
             self.isload = True
         item = self._get_index(word)
-        text = self._query(item[1], item[2]) if item else 'not found'
+        text = self._query(item[0], item[1]) if item else 'not found'
         return text        
 
     def _load(self, dictdir):
@@ -54,24 +54,25 @@ class Dict(object):
             word = struct.unpack_from(fmt, data, begin)[0]
 
             begin += struct.calcsize(fmt) + 1
-            (offset, size) = struct.unpack_from('>ii', data, begin)
+            offset, size = struct.unpack_from('>ii', data, begin)
             begin += struct.calcsize('>ii')
 
-            item = (word, offset, size)
-            self.words.append(item)
+            self.words.append(word)
+            self.words.append(offset)
+            self.words.append(size)
 
     def _get_index(self, word):
         begin, end = 0, self.count - 1
 
         while begin <= end:
             mid = (begin + end) >> 1
-            r = cmp(word, self.words[mid][0].lower())
+            r = cmp(word, self.words[mid*3].lower())
             if r > 0:
                 begin = mid + 1
             elif r < 0:
                 end = mid - 1
             else:
-                return self.words[mid]
+                return self.words[mid*3+1:(mid+1)*3]
 
     def _query(self, offset, size):
         fi = gzip.open(self.dic, 'rb')
