@@ -1,15 +1,20 @@
 # coding: utf8
 
-import urllib
+import urllib2
 import json
 
-def qqdict(word):
-    queryurl = 'http://dict.qq.com/dict?q=%s' % word
+user_agent = 'sublime plugin'
+
+def qqdict(word, user_agent=user_agent):
+    url = 'http://dict.qq.com/dict?q=%s' % word
 
     try:
-        webin = urllib.urlopen(queryurl) 
-        data = webin.read()
-        webin.close()
+        headers = {'User-Agent': user_agent}
+        request = urllib2.Request(url, headers=headers)
+        opener = urllib2.build_opener()
+        resp = opener.open(request)
+        data = resp.read()
+        opener.close()
     except:
         return ['network error']
 
@@ -37,6 +42,6 @@ def qqdict(word):
 
 if __name__ == '__main__':
     import sys
-    res = query_qqdict(sys.argv[1])
+    res = qqdict(sys.argv[1], 'plugin for sublime text 2')
     for r in res:
         print r

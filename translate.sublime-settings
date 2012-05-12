@@ -8,6 +8,9 @@
 	// set it true, query would be faster, but consume more memory
 	"store_index_in_memory": true,
 
+	// user agent of netdict
+	"user_agent": "sublime plugin",
+
 	// history record
 	"history": false
 }

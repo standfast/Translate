@@ -43,9 +43,10 @@ class LocalfileTranslateCommand(sublime_plugin.TextCommand):
         pos = symbol[:point].rfind('_')
         begin = 0 if pos == -1 else pos + 1
         pos = symbol[point:].find('_')
-        end = end if pos == -1 else pos
+        end = end if pos == -1 else pos + point
 
         self.symbol = symbol[begin:end].lower()
+
         self.tetc = self.query(self.symbol)
         self.count = setting.get('maxline', 4)
         self.show(self.tetc, self.count)
@@ -59,7 +60,8 @@ class LocalfileTranslateCommand(sublime_plugin.TextCommand):
 
 class NetworkTranslateCommand(LocalfileTranslateCommand):
     def query(self, word, maxline=None):
-        return netdict.qqdict(word)
+        user_agent = setting.get('user_agent', 'sublime plugin')
+        return netdict.qqdict(word, user_agent)
 
 class HistoryTranslateListener(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
