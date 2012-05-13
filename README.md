@@ -1,7 +1,7 @@
 ## Overview
 a translation plugin for Sublime Text 2.
 
- by laputa
+by *laputa*
 
 ## Screenshot
 <a href="https://github.com/standfast/Translate/raw/master/pic/screenshot.png"><img style="border: medium none;" title="SublimeTask with Monaco font" src="https://github.com/standfast/Translate/raw/master/pic/screenshot.png" alt="Sublime transaltion plugin" width="387" height="110"></a>
