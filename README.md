@@ -22,7 +22,7 @@ translate English to Chinese
 Clone this repository in to the Sublime Text 2 "Packages" directory, which is located where ever the 
 "Preferences" -> "Browse Packages" option in sublime takes you.
 
-#### [Package Control](https://github.com/wbond/sublime_package_control) (*wait*)
+#### [Package Control](https://github.com/wbond/sublime_package_control) (*recommend*)
 
 ## Key Binding
 The default key binding is "ctrl+1" and "ctrl+2"
