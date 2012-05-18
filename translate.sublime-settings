@@ -1,6 +1,6 @@
 {
 	// relative to sublime packages path
-	"dictdir": "translate/dicts/langdao",
+	"dictdir": "Translate/dicts/langdao",
 
 	// the most lines shown in panel
 	"maxline": 4,
